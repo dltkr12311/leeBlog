@@ -2,8 +2,6 @@ import React, { Fragment, FunctionComponent } from 'react';
 import { graphql } from 'gatsby';
 import { Global, css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { boolean } from 'yargs';
-import { disable } from 'debug';
 
 interface InfoPageProps {
   data: {
