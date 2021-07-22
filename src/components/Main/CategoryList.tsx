@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
+//type checking
 export interface CategoryListProps {
   selectedCategory: string;
   categoryList: {
@@ -20,11 +21,18 @@ type GatsbyLinkProps = {
   to: string;
 } & CategoryItemProps;
 
+//stlye
 const CategoryListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 768px;
   margin: 100px auto;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-top: 50px;
+    padding: 0 20px;
+  }
 `;
 
 const CategoryItem = styled(({ active, to, ...props }: GatsbyLinkProps) => (
@@ -38,6 +46,10 @@ const CategoryItem = styled(({ active, to, ...props }: GatsbyLinkProps) => (
 
   &:last-of-type {
     margin-right: 0;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 15px;
   }
 `;
 
