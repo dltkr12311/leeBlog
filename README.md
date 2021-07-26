@@ -2,6 +2,10 @@
 
 ---
 
+### 설치 및 실행
+
+`npm install` 설치 후 `npm start`명령어로 실행
+
 ### Directory Structure
 
 - <strong>contents</strong> <br />
