@@ -23,7 +23,7 @@ interface IndexPageProps {
   };
 }
 
-const IndexPage: FunctionComponent<IndexPageProps> = function ({
+const IndexPage: FunctionComponent<IndexPageProps> = ({
   location: { search },
   data: {
     allMarkdownRemark: { edges },
@@ -31,7 +31,7 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
       childImageSharp: { fluid },
     },
   },
-}) {
+}) => {
   const parsed: ParsedQuery<string> = queryString.parse(search);
   const selectedCategory: string =
     typeof parsed.category !== 'string' || !parsed.category
