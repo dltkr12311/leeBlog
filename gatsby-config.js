@@ -1,8 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `프론트엔드 개발자의 이것저것 블로그`,
+    description: `낭비하지 않는 삶`,
+    author: `Sak Lee`,
+    siteUrl: 'https://my-website.com',
   },
   plugins: [
     {
@@ -14,6 +15,9 @@ module.exports = {
     },
     `gatsby-plugin-emotion`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -28,8 +32,6 @@ module.exports = {
         path: `${__dirname}/static`,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -63,6 +65,19 @@ module.exports = {
             options: {
               target: '_blank',
               rel: 'nofollow',
+            },
+          },
+          {
+            resolve: `gatsby-plugin-canonical-urls`,
+            options: {
+              siteUrl: 'https://my-website.com/',
+              stripQueryString: true,
+            },
+          },
+          {
+            resolve: `gatsby-plugin-robots-txt`,
+            options: {
+              policy: [{ userAgent: '*', allow: '/' }],
             },
           },
         ],

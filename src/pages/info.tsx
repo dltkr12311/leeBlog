@@ -36,7 +36,7 @@ const Text1 = styled.div<{ disable: boolean }>`
   text-decoration: ${({ disable }) => (disable ? 'line-through' : 'none')};
 `;
 
-const Text2 = styled('div')<{ disable: boolean }>(() => ({
+const Text2 = styled('div')<{ disable: boolean }>(({ disable }) => ({
   fontSize: '15px',
   color: 'blue',
   textDecoration: disable ? 'line-through' : 'none',

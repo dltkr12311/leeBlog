@@ -13,6 +13,10 @@ const useInfiniteScroll = (selectedCategory: string, posts: PostType[]) => {
     null,
   );
 
+  const observer: MutableRefObject<IntersectionObserver | null> = useRef<IntersectionObserver>(
+    null,
+  );
+
   const [count, setCount] = useState<number>(1);
 
   const postListByCategory = useMemo<PostType[]>(
@@ -25,14 +29,14 @@ const useInfiniteScroll = (selectedCategory: string, posts: PostType[]) => {
     [selectedCategory],
   );
 
-  const observer: IntersectionObserver = new IntersectionObserver(
-    (entries, observer) => {
+  useEffect(() => {
+    observer.current = new IntersectionObserver((entries, observer) => {
       if (!entries[0].isIntersecting) return;
 
       setCount(value => value + 1);
-      observer.disconnect();
-    },
-  );
+      observer.unobserve(entries[0].target);
+    });
+  }, []);
 
   useEffect(() => setCount(1), [selectedCategory]);
 
@@ -40,10 +44,11 @@ const useInfiniteScroll = (selectedCategory: string, posts: PostType[]) => {
     if (
       NUMBER_OF_ITEMS_PER_PAGE * count >= postListByCategory.length ||
       containerRef.current === null ||
-      containerRef.current?.children.length === 0
+      containerRef.current?.children.length === 0 ||
+      observer.current === null
     )
       return;
-    observer.observe(
+    observer.current.observe(
       containerRef.current?.children[containerRef.current.children.length - 1],
     );
   }, [count, selectedCategory]);
